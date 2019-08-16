@@ -14,6 +14,7 @@ using std::vector;
 struct checker
 {
     bigN ans;
+    LDB MAXLDB;
     vector<map<unsigned long long,size_t>> ratio;
     vector<bigN> netCost, groupCost;
     string check(const FPGAgraph &fg, const userOutput &uo)
@@ -44,14 +45,16 @@ struct checker
             DST.undo();
             ++nid;
         }
+        MAXLDB = 0;
         for (size_t eid = 0; eid < ratio.size(); ++eid)
         {
-            fracType add = fracType(0);
+            LDB add = LDB(0);
             for(auto m: ratio[eid]){
-                add += fracType(m.second, m.first);
+                add += LDB(m.second) / m.first;
             }
-            if (add > fracType(1))
+            if (add > LDB(1))
                 return "Connection id = " + std::to_string(eid) + " TDM ratio > 1";
+            MAXLDB = std::max(MAXLDB, add);
         }
         for (size_t i = 0; i < fg.Group_num; ++i)
         {

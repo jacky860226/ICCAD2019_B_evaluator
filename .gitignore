@@ -30,7 +30,7 @@
 *.exe
 *.out
 *.app
-evaluator
+evaluator_long_double
 
 # Visual studio cod
 .vscode

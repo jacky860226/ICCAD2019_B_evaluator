@@ -39,6 +39,7 @@ int main(int argc, char *argv[])
     if (s == "")
     {
         cout << "\tNo error, maximum total TDM ratio of all net groups is: " << chk.ans << '\n';
+        cout << "\tMaximum TDM ratio is:" << chk.MAXLDB << '\n';
     }
     else
     {
